@@ -1,0 +1,8 @@
+D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\bin\Debug\MasterMind.exe.config
+D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\bin\Debug\MasterMind.exe
+D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\bin\Debug\MasterMind.pdb
+D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.csproj.AssemblyReference.cache
+D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.csproj.SuggestedBindingRedirects.cache
+D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.csproj.CoreCompileInputs.cache
+D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.exe
+D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.pdb
