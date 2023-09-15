@@ -10,7 +10,7 @@ namespace MasterMind
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hro");
+            Console.WriteLine("hllro");
         }
     }
 }
