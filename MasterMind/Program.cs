@@ -19,53 +19,71 @@ namespace MasterMind
             //Couleurs pouvant être choisies
             char[] couleurs = { 'G', 'Y', 'W', 'R', 'B', 'M', 'C'};
             char[] couleursParOrdinateur = new char[4];
+            bool gegnerJeu = false;
+            string couleursParUtilisateur = "";
+            int compteurIndex=0;
+            int compteurCouleurs=0;
+            int compteurTour = 0;
+            int compteurOpposé = 4;
 
             //L'ordinateur génère 4 nombres aléatoires compris entre 0 et 7.
             //Il utilise les nombres générés comme index. Ajoute les couleurs de cet index au nouveau array.
             Random random = new Random();   
             int index = random.Next(couleurs.Length);
           
-            char[] charCouleuresdUtilisateur = new char[4];
-
-           
+            char[] charCouleuresdUtilisateur = new char[4];         
 
             for (int i = 0; i < 4; i++)
             {
                 index = random.Next(couleurs.Length);           
                 couleursParOrdinateur[i] = couleurs[index];               
             }
+
             Console.WriteLine(couleursParOrdinateur);
             Console.ReadLine();
 
-            bool gegnerJeu = false;
-            string couleursUtilisateur="";
-            char[] couleursJoueur = new char[4];   
-
-            while (!gegnerJeu)
-            {
-
-            //L'utilisateur est invité à choisir 4 couleurs. Les couleurs saisies sont transférées vers une variable.
+            while (!gegnerJeu && compteurTour < 10)
+            {           
+                //L'utilisateur est invité à choisir 4 couleurs. Les couleurs saisies sont transférées vers une variable.
                 Console.WriteLine("Entrez 4 couleurs pour deviner.");
-                couleursUtilisateur = Console.ReadLine();
+                couleursParUtilisateur = Console.ReadLine();
 
-                couleursJoueur = couleursUtilisateur.ToCharArray();
-
-                for (int i = 0; i < 3; i++)
+                if (couleursParUtilisateur.Length !=4)
                 {
-                    charCouleuresdUtilisateur[i] = couleurs[i];
+                    Console.WriteLine("Vous devez choisir 4 lettres pour couleurs");
+                    continue;
                 }
-                Console.WriteLine("Utilisateur un renkleri :" + charCouleuresdUtilisateur);
+
+                //Les couleurs de l'ordinateur et de l'utilisateur sont comparées.
+                for (int i = 0; i < 4; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        Console.WriteLine("i : "+ couleursParOrdinateur[i]);
+                        Console.WriteLine("j : " + couleursParUtilisateur[j]);
+                        Console.ReadLine();
+                        if (couleursParOrdinateur[i] == couleursParUtilisateur[j])
+                        {
+                            if (i == j)
+                            {
+                                compteurIndex++;
+                                Console.WriteLine("Yer ve renk Ayni" + compteurIndex);
+                                Console.ReadLine();
+                            }
+
+                            compteurCouleurs++;
+                            Console.WriteLine("Couleurs" + compteurCouleurs);
+                            Console.ReadLine();
+                        }
+                                     
+                    }
+                }
+                Console.WriteLine("siz " + (compteurOpposé - compteurIndex) + " kadar yeri tahmin edemediniz");
+                Console.WriteLine("siz "+ compteurIndex + " kadar yeri dogru tahmin ettiniz");
+                Console.WriteLine("siz "+ compteurCouleurs + " kadar rengi dogru tahmin ettiniz");
                 Console.ReadLine();
-
-
-
-
+                compteurTour++;
+                Console.WriteLine(compteurTour);
+                Console.ReadLine();
             }
-
-            Console.WriteLine(couleursUtilisateur);
-            Console.ReadLine();
-
-
         }
     }
 }
