@@ -6,3 +6,10 @@ D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\
 D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.csproj.CoreCompileInputs.cache
 D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.exe
 D:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.pdb
+E:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\bin\Debug\MasterMind.exe.config
+E:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\bin\Debug\MasterMind.exe
+E:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\bin\Debug\MasterMind.pdb
+E:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.csproj.AssemblyReference.cache
+E:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.csproj.CoreCompileInputs.cache
+E:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.exe
+E:\Leçons\Vendredi Après Midi P_Prog 403-404 Mely J\MasterMind\MasterMind\obj\Debug\MasterMind.pdb
