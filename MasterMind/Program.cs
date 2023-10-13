@@ -15,6 +15,7 @@ namespace MasterMind
             Console.WriteLine("Il s'agit d'un jeu de devinettes de couleurs.");
             Console.WriteLine("Si vous devinez respectivement 4 de ces 7 couleurs, vous gagnez la partie. Vous avez 10 suppositions.");
             Console.WriteLine("Comme couleurs, utilisez les lettres « G » pour Gris, « Y » pour Jaune, « W » pour Blanc, « R » pour Rouge, « B » pour Bleu, « M » pour Magenta et « C » pour Cyan.");
+            Console.WriteLine("GYWRBMC");
             //Console.ReadLine();
 
             //Couleurs pouvant être choisies
@@ -24,8 +25,7 @@ namespace MasterMind
             string couleursParUtilisateur = "";
             int compteurBienPlace=0;
             int compteurMalPlace = 0;
-            int compteurCouleurs=0;
-            int compteurTour = 0;
+            int compteurTour = 1;
             //int compteurOpposé = 4;
 
             //L'ordinateur génère 4 nombres aléatoires compris entre 0 et 7.
@@ -41,6 +41,7 @@ namespace MasterMind
                 couleursParOrdinateur[i] = couleurs[index];               
             }
 
+            couleursParOrdinateur = "CCBC".ToArray();
             Console.WriteLine(couleursParOrdinateur);
             //Console.ReadLine();
 
@@ -57,77 +58,95 @@ namespace MasterMind
                 }
 
 
-                /*
-                for (int i = 0; i < 4; i++) {
-                    if (couleursParUtilisateur[i] == couleursParOrdinateur[i])
-                    {
-                        Console.WriteLine("juste");
-                        compteurCouleurs++;
-                        compteurBienPlace++;
-                    }
-                    for (int j = 0; j < 4; j++)
-                    {
-                        if(couleursParUtilisateur[i] == couleursParOrdinateur[j] && couleursParUtilisateur[i] == couleursParOrdinateur[i])
-                    {
-                        compteurMalPlace++;
 
+                /*                    //Les couleurs de l'ordinateur et de l'utilisateur sont comparées.
+                                    for (int i = 0; i < 4; i++) {
+                                        for (int j = 0; j < 4; j++) {
+                                            Console.WriteLine("i : " + couleursParOrdinateur[i]);
+                                            Console.WriteLine("j : " + couleursParUtilisateur[j]);
+                                            Console.ReadLine();
+                                            if (couleursParOrdinateur[i] == couleursParUtilisateur[j])
+                                            {
+                                                if (i == j)
+                                                {
+                                                Console.WriteLine("once : " + compteurBienPlace);
+                                                compteurBienPlace++;
+                                                Console.WriteLine("sonra: " + compteurBienPlace);
+                                                break;
+                                                }
+                                                else if(i!=j)
+                                                {                              
+                                                    compteurMalPlace++;
+                                                    break;                             
+                                                }                                                
+                                            }                                   
+                                        }
+                                    }
 
-                    }
-                    }
-                    
-
-                    
-                
-                }*/
-
-                
+                */
                 //Les couleurs de l'ordinateur et de l'utilisateur sont comparées.
-                for (int i = 0; i < 4; i++) {
-                    for (int j = 0; j < 4; j++) {
-                       // Console.WriteLine("i : "+ couleursParOrdinateur[i]);
-                        //Console.WriteLine("j : " + couleursParUtilisateur[j]);
-                       // Console.ReadLine();
-                        if (couleursParOrdinateur[i] == couleursParUtilisateur[j])
-                        {
-                            if (i == j)
-                            {
-                                compteurBienPlace++;
-                               // Console.WriteLine("la même place et la même couleur" + compteurBienPlace);
-                               // Console.ReadLine();
-                            }
-                            else {
-                                
-                                compteurMalPlace++;
-                                break;
-                               // Console.WriteLine("la même couleur mais mal places" + compteurMalPlace);
-                               // Console.ReadLine();
-                            }
-                            compteurCouleurs++;
-                           // Console.WriteLine("Couleurs" + compteurCouleurs);
-                           // Console.ReadLine();
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {                   
+                        if ( (i == j) && (couleursParOrdinateur[i] == couleursParUtilisateur[j]))
+                        {                      
+                            Console.WriteLine("once : " + compteurBienPlace);
+                            compteurBienPlace++;
+                            Console.WriteLine("sonra: " + compteurBienPlace);
+                            break;                        
                         }
-                                     
                     }
                 }
-                
-                Console.WriteLine("Vous trouvez " + compteurBienPlace + " places vrai");
-                Console.WriteLine("Vouz trouvez " + compteurCouleurs + " couleurs vrai");
-                Console.WriteLine("Vouz trouvez " + compteurMalPlace + " couleurs vrai mais mal places" );
-                
+
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if ((i != j) && (couleursParOrdinateur[i] == couleursParUtilisateur[j]))
+                        {
+                            Console.WriteLine("once : " + compteurMalPlace);
+                            compteurMalPlace++;
+                            Console.WriteLine("sonra: " + compteurMalPlace);
+                            break;
+                        }
+                    }
+                }
+
+
+
+
+
+
+
+
+                Console.WriteLine(couleursParOrdinateur);
+                Console.WriteLine("Essai " + compteurTour + " " + couleursParUtilisateur);
+                Console.WriteLine("=> Ok: " + compteurBienPlace);
+                Console.WriteLine("=> Mauvaise Position : " + compteurMalPlace);
                 Console.ReadLine();
+                
+
+                if (compteurTour < 10 && compteurBienPlace == 4)
+                {
+                    Console.WriteLine("Felicitation vous gagnez :)");
+                    Console.ReadLine();
+                    gegnerJeu=true;
+                    break;
+                }
+                else if(compteurTour==10)
+                {
+                    Console.WriteLine("Désole vous avez perdu :(");
+                    Console.ReadLine();
+                    break;
+                }
+                compteurBienPlace = 0;
+                compteurMalPlace = 0;
                 compteurTour++;
-                Console.WriteLine(10-compteurTour + " fois vous pouvez essaier");
+                Console.WriteLine(11 - compteurTour + " fois vous pouvez essaier");
                 Console.ReadLine();
             }
-            if (compteurTour < 10 && gegnerJeu == true)
-            {
-                Console.WriteLine("Felicitation vous gagnez :)");
-                Console.ReadLine();
-            }
-            else {
-                Console.WriteLine("Désole vous avez perdu :(");
-                Console.ReadLine();
-            }
+            
         }
     }
 }
