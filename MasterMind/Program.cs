@@ -10,7 +10,7 @@ namespace MasterMind
     {
         static void Main(string[] args)
         {         
-            //Couleurs pouvant être choisies
+            //Couleurs pouvant être choisies.
             char[] couleurs = { 'G', 'Y', 'W', 'R', 'B', 'M', 'C'};
             char[] couleursParOrdinateur = new char[4];
             bool gegnerJeu = false;
@@ -18,17 +18,18 @@ namespace MasterMind
             int compteurBienPlace = 0;
             int compteurMalPlace = 0;
             int compteurTour = 1;         
-            char[] couleursParUtilisateurChar = new char[4];
+
+            char[] couleursParUtilisateurManipule = new char[4];
             char[] couleursParOrdinateurManipule = new char[4];
 
             introduction();
             genereCouleurs();
           
-            couleursParOrdinateur = "CCBC".ToArray();
-            Console.WriteLine(couleursParOrdinateur);      
+            //couleursParOrdinateur = "CCBC".ToArray();
+            //Console.WriteLine(couleursParOrdinateur);      
             //Console.ReadLine();
 
-            //Le jeu continue jusqu'à ce que vous gagniez ou perdiez
+            //Le jeu continue jusqu'à ce que vous gagniez ou perdiez.
             while (!gegnerJeu && compteurTour <= 10)
             {
                 demandeCouleurs();               
@@ -45,7 +46,7 @@ namespace MasterMind
                 }
                 else if(compteurTour==10)
                 {
-                    Console.WriteLine("Désole Vous avez Perdu :( ");
+                    Console.WriteLine("Désole, Vous avez Perdu :( ");
                     Console.ReadLine();                 
                     break;
                 }
@@ -56,7 +57,7 @@ namespace MasterMind
                 Console.WriteLine("Encore " + (11 - compteurTour) + " fois vous pouvez essaier. \n");             
             }
 
-            //introduction de jeu
+            //introduction de jeu.
             void introduction()
             {
                 Console.WriteLine("Bienvenue dans le jeu MasterMind \n ");
@@ -84,42 +85,46 @@ namespace MasterMind
             {  
                 Console.WriteLine("Entrez 4 couleurs pour deviner.");
                 couleursParUtilisateur = Console.ReadLine().ToUpper() ;
-                couleursParUtilisateurChar = couleursParUtilisateur.ToCharArray();
-                Console.WriteLine(couleursParUtilisateurChar);
+                couleursParUtilisateurManipule = couleursParUtilisateur.ToCharArray();
+                Console.WriteLine(couleursParUtilisateurManipule);
                 verifieDonne();
             }
 
+            //La validité de la sélection de couleurs saisie et du nombre de caractères est vérifiée.
             void verifieDonne()
             {
                 if (couleursParUtilisateur.Length != 4)
-                {
+                {                   
+                    Console.WriteLine("Vous devez choisir 4 lettres pour couleurs. \n");
+                    demandeCouleurs();
+                } else if (couleursParUtilisateur.Length == 4) {
                     for (int i = 0; i < couleurs.Length; i++)
                     {
-                        for (int j = 0; j < couleursParUtilisateurChar.Length; j++)
+                        for (int j = 0; j < couleursParUtilisateurManipule.Length; j++)
                         {
-                            if (!couleurs.Contains(couleursParUtilisateurChar[j]))
-                            {                             
+                            if (!couleurs.Contains(couleursParUtilisateur[j]))
+                            {
+                                Console.WriteLine("Vous devez choisir 4 couleurs souhaitées. \n");
+                                demandeCouleurs();
                                 break;
                             }
                         }
                     }
-                    Console.WriteLine("Vous devez choisir 4 lettres pour couleurs. \n");
-                    demandeCouleurs();
                 }
             }
 
-            //Les couleurs de l'ordinateur et de l'utilisateur sont comparées même index.
+            //Les couleurs de l'ordinateur et de l'utilisateur sont comparées par même index.
             void compareMemeIndex()
             { 
                 for (int i = 0; i < 4; i++)
                 {
                     for (int j = 0; j < 4; j++)
                     {
-                        if ((i == j) && (couleursParOrdinateur[i] == couleursParUtilisateurChar[j]))
-                        {                         
-                            couleursParUtilisateurChar[j] = 'X';
+                        if ((i == j) && (couleursParOrdinateur[i] == couleursParUtilisateurManipule[j]))
+                        {
+                            couleursParUtilisateurManipule[j] = 'X';
                             couleursParOrdinateurManipule[i] = 'Y';
-                            Console.WriteLine(couleursParUtilisateurChar);
+                            Console.WriteLine(couleursParUtilisateurManipule);
                             compteurBienPlace++;                           
                             break;
                         }                       
@@ -127,16 +132,16 @@ namespace MasterMind
                 }
             }
 
-            //Les couleurs de l'ordinateur et de l'utilisateur sont comparées different index.
+            //Les couleurs de l'ordinateur et de l'utilisateur sont comparées par different index.
             void compareDifferentIndex()
             {
                 for (int i = 0; i < 4; i++)
                 {
                     for (int j = 0; j < 4; j++)
                     {
-                        if ((i != j) && (couleursParOrdinateurManipule[i] == couleursParUtilisateurChar[j]))
+                        if ((i != j) && (couleursParOrdinateurManipule[i] == couleursParUtilisateurManipule[j]))
                         {
-                            couleursParUtilisateurChar[j] = 'X';
+                            couleursParUtilisateurManipule[j] = 'X';
                             Console.WriteLine(couleursParUtilisateur[j]);
                             compteurMalPlace++;                          
                             break;
