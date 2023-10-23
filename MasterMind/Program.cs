@@ -25,19 +25,14 @@ namespace MasterMind
             introduction();
             genereCouleurs();
             
-
-            //couleursParOrdinateur = "BBGB".ToArray();
-            Console.WriteLine("ordina");
-            Console.WriteLine(couleursParOrdinateur);
-            Console.WriteLine(couleursParOrdinateurManipule);
-            Console.WriteLine("Mani");
-            //Console.ReadLine();
+            //utilisée pour contrôller
+            //couleursParOrdinateur = "BBGB".ToArray();          
+            //Console.WriteLine(couleursParOrdinateur);           
             
             //Le jeu continue jusqu'à ce que vous gagniez ou perdiez.
             while (!gegnerJeu && compteurTour <= 10)
             {
-                demandeCouleurs();
-                //Comparer(couleursParOrdinateurManipule, couleursParUtilisateurManipule);
+                demandeCouleurs();                
                 compareMemeIndex();
                 compareDifferentIndex();
                 montreResultat();
@@ -62,6 +57,8 @@ namespace MasterMind
                 Console.WriteLine("Encore " + (11 - compteurTour) + " fois vous pouvez essaier. \n");
             }
 
+            //LES FONCTIONS
+
             //introduction de jeu.
             void introduction()
             {
@@ -69,7 +66,7 @@ namespace MasterMind
                 Console.WriteLine("Il s'agit d'un jeu de devinettes de couleurs.");
                 Console.WriteLine("Si vous devinez respectivement 4 de ces 7 couleurs, vous gagnez la partie. Vous avez 10 suppositions.\n");
                 Console.WriteLine("Comme couleurs, utilisez les lettres « G » pour Gris, « Y » pour Jaune, « W » pour Blanc, « R » pour Rouge, « B » pour Bleu, « M » pour Magenta et « C » pour Cyan.");
-                Console.WriteLine("GYWRBMC \n");
+                Console.WriteLine("Les Couleurs Possibles : GYWRBMC \n");
             }
 
             //L'ordinateur génère 4 nombres aléatoires compris entre 0 et 7.
@@ -91,8 +88,7 @@ namespace MasterMind
                 Console.WriteLine("Entrez 4 couleurs pour deviner.");
                 couleursParUtilisateur = Console.ReadLine().ToUpper();
                 couleursParUtilisateurManipule = couleursParUtilisateur.ToCharArray();
-                couleursParOrdinateurManipule = (char[])couleursParOrdinateur.Clone();
-                Console.WriteLine(couleursParUtilisateurManipule);
+                couleursParOrdinateurManipule = (char[])couleursParOrdinateur.Clone();              
                 verifieDonne();
             }
 
@@ -119,58 +115,7 @@ namespace MasterMind
                         }
                     }
                 }
-            }
-            /*
-            void Comparer(char[] ord, char[] uti) {
-                for (int i = 0; i < 4; i++)
-                {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        if ((i == j) && (ord[i] == uti[j]))
-                        {
-                            ord[i] = '0';
-                            uti[j] = '1';
-                            Console.WriteLine(couleursParOrdinateur);
-                            Console.Write("ord :");
-                            Console.WriteLine(ord);
-                           
-                            Console.WriteLine(couleursParUtilisateur);
-                            Console.Write("ut :");                          
-                            Console.WriteLine(uti);
-                            compteurBienPlace++;
-                            break;
-                        }
-                    }
-                }
-            
-                for (int i = 0; i < 4; i++)
-                {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        if ((i != j) && (ord[i] == uti[j]))
-                        {
-                            ord[i] = 'X';
-                            uti[j] = 'Z';
-                            Console.WriteLine(couleursParOrdinateur);
-                            Console.Write("orddif :");                          
-                            Console.WriteLine(ord);
-                            Console.WriteLine("/n");
-                            Console.WriteLine(couleursParUtilisateur);                           
-                            Console.Write("utdif :");                        
-                            Console.WriteLine(uti);
-                            compteurMalPlace++;
-                            break;
-                        }
-                    }
-                }
-
-
-          
-
-            }
-
-  */
-
+            }            
             
             //Les couleurs de l'ordinateur et de l'utilisateur sont comparées par même index.
             void compareMemeIndex()
@@ -182,15 +127,7 @@ namespace MasterMind
                         if ((i == j) && (couleursParOrdinateur[i] == couleursParUtilisateurManipule[j]))
                         {
                             couleursParOrdinateurManipule[i] = '0';
-                            couleursParUtilisateurManipule[j] = '1';
-                            Console.WriteLine(" ");
-                            Console.Write("ord :");
-                            Console.WriteLine(couleursParOrdinateur);
-                            Console.WriteLine(ordCol);
-                            Console.WriteLine(couleursParOrdinateurManipule);
-                            Console.Write("ut :");
-                            Console.WriteLine(couleursParUtilisateur);
-                            Console.WriteLine(couleursParUtilisateurManipule);
+                            couleursParUtilisateurManipule[j] = '1';                           
                             compteurBienPlace++;
                             break;
                         }
@@ -208,28 +145,18 @@ namespace MasterMind
                         if ((i != j) && (couleursParOrdinateurManipule[i] == couleursParUtilisateurManipule[j]))
                         {
                             couleursParOrdinateurManipule[i] = 'X';
-                            couleursParUtilisateurManipule[j] = 'Z';
-                            Console.WriteLine(couleursParUtilisateurManipule[j]);
-                            Console.Write("orddif :");
-                            Console.WriteLine(couleursParOrdinateur);
-                            Console.WriteLine(couleursParOrdinateur);
-                            Console.WriteLine(couleursParOrdinateurManipule);
-                            Console.Write("utdif :");
-                            Console.WriteLine(couleursParUtilisateur);
-                            Console.WriteLine(couleursParUtilisateurManipule);
+                            couleursParUtilisateurManipule[j] = 'Z';                          
                             compteurMalPlace++;
                             break;
                         }
                     }
                 }
-            }
-            
+            }            
 
             //Après évaluation, le résultat est affiché sur la console.
             void montreResultat()
             {
-                Console.WriteLine(" ");
-                Console.WriteLine(couleursParOrdinateur);
+                Console.WriteLine(" ");               
                 Console.Write("Les Couleurs Possibles: ");
                 Console.WriteLine(couleurs);
                 Console.WriteLine("Essai " + compteurTour + " " + couleursParUtilisateur);
