@@ -1,4 +1,9 @@
-﻿using System;
+﻿///ETML
+///Auteur : Mustafa Yildiz
+///Date   : 27.10.2023
+///Description : Vous demandez à l’ordinateur de créer n’importe quel nombre de couleurs aléatoires sur 7 couleurs. Vous essayez de deviner leur ordre.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +13,22 @@ namespace MasterMind
 {
     internal class Program
     {
+        static Random random = new Random();
         static void Main(string[] args)
         {
-            //Couleurs pouvant être choisies.
+            //Couleurs pouvant être choisies.          
+            int lengthDeCouleursParOrdinateur = 0;
+            introduction();
             char[] couleurs = { 'G', 'Y', 'W', 'R', 'B', 'M', 'C' };
-            char[] couleursParOrdinateur = new char[4];
+            char[] couleursParOrdinateur = new char[lengthDeCouleursParOrdinateur];
             bool gegnerJeu = false;
             string couleursParUtilisateur = " ";
             int compteurBienPlace = 0;
             int compteurMalPlace = 0;
             int compteurTour = 1;
-
-            char[] couleursParUtilisateurManipule = new char[4];
-            char[] couleursParOrdinateurManipule = new char[4];
-
-            introduction();
+            
+            char[] couleursParUtilisateurManipule = new char[lengthDeCouleursParOrdinateur];
+            char[] couleursParOrdinateurManipule = new char[lengthDeCouleursParOrdinateur];
             genereCouleurs();
             
             //utilisée pour contrôller
@@ -37,7 +43,7 @@ namespace MasterMind
                 compareDifferentIndex();
                 montreResultat();
 
-                if (compteurTour < 10 && compteurBienPlace == 4)
+                if (compteurTour < 10 && compteurBienPlace == lengthDeCouleursParOrdinateur)
                 {
                     Console.WriteLine("Félicitations, Vous avez Gagné. :) ");
                     Console.ReadLine();
@@ -64,18 +70,20 @@ namespace MasterMind
             {
                 Console.WriteLine("Bienvenue dans le jeu MasterMind \n ");
                 Console.WriteLine("Il s'agit d'un jeu de devinettes de couleurs.");
-                Console.WriteLine("Si vous devinez respectivement 4 de ces 7 couleurs, vous gagnez la partie. Vous avez 10 suppositions.\n");
+                Console.WriteLine("Si vous devinez respectivement la longueur que vous choisissez de ces 7 couleurs, vous gagnez la partie. Vous avez 10 suppositions.\n");
                 Console.WriteLine("Comme couleurs, utilisez les lettres « G » pour Gris, « Y » pour Jaune, « W » pour Blanc, « R » pour Rouge, « B » pour Bleu, « M » pour Magenta et « C » pour Cyan.");
                 Console.WriteLine("Les Couleurs Possibles : GYWRBMC \n");
+                Console.WriteLine("Combien de chiffres voulez-vous dans un jeu de devinettes ? Veuillez entrer un nombre. 1-9");
+                lengthDeCouleursParOrdinateur = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(lengthDeCouleursParOrdinateur);
             }
 
             //L'ordinateur génère 4 nombres aléatoires compris entre 0 et 7.
             //Il utilise les nombres générés comme index. Ajoute les couleurs de cet index au nouveau array.
             void genereCouleurs()
-            {
-                Random random = new Random();
+            {              
                 int index = random.Next(couleurs.Length);
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < lengthDeCouleursParOrdinateur; i++)
                 {
                     index = random.Next(couleurs.Length);
                     couleursParOrdinateur[i] = couleurs[index];
@@ -85,7 +93,7 @@ namespace MasterMind
             //L'utilisateur est invité à choisir 4 couleurs. Les couleurs saisies sont transférées vers une variable et transformer uppercase et char.
             void demandeCouleurs()
             {
-                Console.WriteLine("Entrez 4 couleurs pour deviner.");
+                Console.WriteLine("Entrez " + lengthDeCouleursParOrdinateur + " couleurs pour deviner.");
                 couleursParUtilisateur = Console.ReadLine().ToUpper();
                 couleursParUtilisateurManipule = couleursParUtilisateur.ToCharArray();
                 couleursParOrdinateurManipule = (char[])couleursParOrdinateur.Clone();              
@@ -95,12 +103,12 @@ namespace MasterMind
             //La validité de la sélection de couleurs saisie et du nombre de caractères est vérifiée.
             void verifieDonne()
             {
-                if (couleursParUtilisateur.Length != 4)
+                if (couleursParUtilisateur.Length != lengthDeCouleursParOrdinateur)
                 {
-                    Console.WriteLine("Vous devez choisir 4 lettres pour couleurs. \n");
+                    Console.WriteLine("Vous devez choisir " + lengthDeCouleursParOrdinateur + " lettres pour couleurs. \n");
                     demandeCouleurs();
                 }
-                else if (couleursParUtilisateur.Length == 4)
+                else if (couleursParUtilisateur.Length == lengthDeCouleursParOrdinateur)
                 {
                     for (int i = 0; i < couleurs.Length; i++)
                     {
@@ -108,7 +116,7 @@ namespace MasterMind
                         {
                             if (!couleurs.Contains(couleursParUtilisateur[j]))
                             {
-                                Console.WriteLine("Vous devez choisir 4 couleurs souhaitées. \n");
+                                Console.WriteLine("Vous devez choisir " + lengthDeCouleursParOrdinateur + " couleurs souhaitées. \n");
                                 demandeCouleurs();
                                 break;
                             }
@@ -120,27 +128,23 @@ namespace MasterMind
             //Les couleurs de l'ordinateur et de l'utilisateur sont comparées par même index.
             void compareMemeIndex()
             {
-                for (int i = 0; i < 4; i++)
-                {
-                    for (int j = 0; j < 4; j++)
+                for (int i = 0; i < lengthDeCouleursParOrdinateur; i++)
+                {                
+                    if (couleursParOrdinateur[i] == couleursParUtilisateurManipule[i])
                     {
-                        if ((i == j) && (couleursParOrdinateur[i] == couleursParUtilisateurManipule[j]))
-                        {
-                            couleursParOrdinateurManipule[i] = '0';
-                            couleursParUtilisateurManipule[j] = '1';                           
-                            compteurBienPlace++;
-                            break;
-                        }
-                    }
+                        couleursParOrdinateurManipule[i] = '0';
+                        couleursParUtilisateurManipule[i] = '1';                           
+                        compteurBienPlace++;                      
+                    }                 
                 }
             }
 
             //Les couleurs de l'ordinateur et de l'utilisateur sont comparées par different index.
             void compareDifferentIndex()
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < lengthDeCouleursParOrdinateur; i++)
                 {
-                    for (int j = 0; j < 4; j++)
+                    for (int j = 0; j < lengthDeCouleursParOrdinateur; j++)
                     {
                         if ((i != j) && (couleursParOrdinateurManipule[i] == couleursParUtilisateurManipule[j]))
                         {
